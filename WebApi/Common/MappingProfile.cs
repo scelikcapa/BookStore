@@ -9,6 +9,6 @@ public class MappingProfile : Profile
     {
         CreateMap<CreateBookModel, Book>();
         CreateMap<Book, GetByIdQueryModel>().ForMember(dest=>dest.Genre,opt=>opt.MapFrom(src=>((GenreEnum)src.GenreId).ToString()));
-
+        CreateMap<Book,BooksViewModel>().ForMember(dest=>dest.Genre,opt=>opt.MapFrom(src=>((GenreEnum)src.GenreId).ToString()));
     }
 }

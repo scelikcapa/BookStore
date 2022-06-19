@@ -24,14 +24,6 @@ public class CreateBookCommand
             throw new InvalidOperationException("Kitap zaten mevcut.");
         }
 
-        // book=new Book
-        // {
-        //     Title=Model.Title,
-        //     PublishDate=Model.PublishDate,
-        //     PageCount=Model.PageCount,
-        //     GenreId=Model.GenreId
-        // };
-
         book=mapper.Map<Book>(Model);
 
         _context.Books.Add(book);

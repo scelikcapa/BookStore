@@ -2,34 +2,27 @@ using Microsoft.AspNetCore.Mvc;
 using WebApi.DbOperations;
 using Microsoft.EntityFrameworkCore;
 using WebApi.Common;
+using AutoMapper;
 
 namespace WebApi.BookOperations.GetBooks;
 
 public class GetBooksQuery
 {
     private readonly BookStoreDbContext _context;
+    private readonly IMapper mapper;
 
-    public GetBooksQuery(BookStoreDbContext context)
+    public GetBooksQuery(BookStoreDbContext context,IMapper mapper)
     {
         _context = context;
+        this.mapper = mapper;
     }
 
     public List<BooksViewModel> Handle()
     {
         var bookList=_context.Books.OrderBy(b=>b.Id).ToList();
 
-        List<BooksViewModel> vm= new List<BooksViewModel>();
+        List<BooksViewModel> vm= mapper.Map<List<BooksViewModel>>(bookList);
 
-        foreach (var book in bookList)
-        {
-            vm.Add(new BooksViewModel()
-            {
-                Title = book.Title,
-                Genre = ((GenreEnum)book.GenreId).ToString(),
-                PublishDate= book.PublishDate.Date.ToString("dd/MM/yyyy"),
-                PageCount = book.PageCount
-            });
-        }
         return vm;
     }
     

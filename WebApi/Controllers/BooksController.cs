@@ -7,105 +7,102 @@ using AutoMapper;
 
 namespace WebApi.Controllers;
 
-    [ApiController]
-    [Route("[Controller]")]
-    public class BooksController : ControllerBase
-    {
-        private readonly BookStoreDbContext _context;
-        private readonly IMapper mapper;    
+[ApiController]
+[Route("[Controller]")]
+public class BooksController : ControllerBase
+{
+    private readonly BookStoreDbContext _context;
+    private readonly IMapper _mapper;    
 
     public BooksController(BookStoreDbContext context, IMapper mapper)
     {
         _context=context;
-        this.mapper = mapper;
+        _mapper = mapper;
     } 
 
-      
+    [HttpGet]
+    public IActionResult GetBooks() 
+    {
+        // var bookList=_context.Books.OrderBy(b=>b.Id).ToList<Book>();
+        // return bookList;
 
-        [HttpGet]
-        public IActionResult GetBooks() 
+        GetBooksQuery query =new GetBooksQuery(_context,_mapper);
+        var result = query.Handle();
+        return Ok(result);
+    }
+
+    [HttpGet("{id}")]
+    public IActionResult GetById (int id)
+    {
+        GetByIdQuery query=new GetByIdQuery(_context,_mapper);
+        query.BookId=id;
+        var result=new GetByIdQueryModel();
+
+        try
         {
-            // var bookList=_context.Books.OrderBy(b=>b.Id).ToList<Book>();
-            // return bookList;
-
-            GetBooksQuery query =new GetBooksQuery(_context);
-            var result = query.Handle();
-            return Ok(result);
+            result=query.Handle();
         }
-
-        [HttpGet("{id}")]
-        public IActionResult GetById (int id)
+        catch (Exception ex)
         {
-            GetByIdQuery query=new GetByIdQuery(_context);
-            query.BookId=id;
-            var result=new GetByIdQueryModel();
-
-            try
-            {
-                result=query.Handle();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-            
-            return Ok(result);
+            return BadRequest(ex.Message);
         }
         
-
-        [HttpPost]
-        public IActionResult AddBook([FromBody] CreateBookModel newBook)
-        {
-            CreateBookCommand command=new CreateBookCommand(_context, mapper);
-            
-            try
-            {
-                command.Model=newBook;
-                command.Handle();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-
-            return Ok();
-        }
-
-        [HttpPut("{id}")]
-        public IActionResult UpdateBook(int id, [FromBody] UpdateBookModel updatedBook)
-        {
-            UpdateBookCommand command=new UpdateBookCommand(_context);
-            command.Model=updatedBook;
-            command.Model.Id=id;
-            
-            try
-            {    
-                command.Handle();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-
-            return Ok();
-        }
-
-        [HttpDelete("{id}")]
-        public IActionResult DeleteBook(int id)
-        {
-            DeleteBookCommand command=new DeleteBookCommand(_context);
-            command.BookId=id;
-            
-            try
-            {    
-                command.Handle();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-
-            return Ok();
-        }
+        return Ok(result);
     }
     
+
+    [HttpPost]
+    public IActionResult AddBook([FromBody] CreateBookModel newBook)
+    {
+        CreateBookCommand command=new CreateBookCommand(_context, _mapper);
+        
+        try
+        {
+            command.Model=newBook;
+            command.Handle();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+
+        return Ok();
+    }
+
+    [HttpPut("{id}")]
+    public IActionResult UpdateBook(int id, [FromBody] UpdateBookModel updatedBook)
+    {
+        UpdateBookCommand command=new UpdateBookCommand(_context);
+        command.Model=updatedBook;
+        command.Model.Id=id;
+        
+        try
+        {    
+            command.Handle();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+
+        return Ok();
+    }
+
+    [HttpDelete("{id}")]
+    public IActionResult DeleteBook(int id)
+    {
+        DeleteBookCommand command=new DeleteBookCommand(_context);
+        command.BookId=id;
+        
+        try
+        {    
+            command.Handle();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+
+        return Ok();
+    }
+}
