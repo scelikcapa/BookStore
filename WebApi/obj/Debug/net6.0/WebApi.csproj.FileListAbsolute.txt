@@ -29,3 +29,5 @@ C:\Users\Admin\source\repos\Pratikler\bookstore\webapi\bin\Debug\net6.0\Microsof
 C:\Users\Admin\source\repos\Pratikler\bookstore\webapi\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
 C:\Users\Admin\source\repos\Pratikler\bookstore\webapi\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.InMemory.dll
 C:\Users\Admin\source\repos\Pratikler\bookstore\webapi\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\Admin\source\repos\Pratikler\bookstore\webapi\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\Admin\source\repos\Pratikler\bookstore\webapi\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

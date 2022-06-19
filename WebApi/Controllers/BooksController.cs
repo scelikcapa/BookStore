@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using WebApi.DbOperations;
-using Microsoft.EntityFrameworkCore;
 using WebApi.BookOperations.GetBooks;
+using WebApi.BookOperations.CreateBook;
+using WebApi.BookOperations.DeleteBook;
+using AutoMapper;
 
 namespace WebApi.Controllers;
 
@@ -10,11 +12,13 @@ namespace WebApi.Controllers;
     public class BooksController : ControllerBase
     {
         private readonly BookStoreDbContext _context;
+        private readonly IMapper mapper;    
 
-        public BooksController(BookStoreDbContext context)
-        {
-            _context=context;
-        } 
+    public BooksController(BookStoreDbContext context, IMapper mapper)
+    {
+        _context=context;
+        this.mapper = mapper;
+    } 
 
       
 
@@ -47,18 +51,12 @@ namespace WebApi.Controllers;
             
             return Ok(result);
         }
-
-        // [HttpGet]
-        // public Book GetBooks([FromQuery] string id) 
-        // {
-        //     var book=BookList.SingleOrDefault(b=>b.Id==Convert.ToInt32(id));
-        //     return book;
-        // }
+        
 
         [HttpPost]
         public IActionResult AddBook([FromBody] CreateBookModel newBook)
         {
-            CreateBookCommand command=new CreateBookCommand(_context);
+            CreateBookCommand command=new CreateBookCommand(_context, mapper);
             
             try
             {
@@ -95,13 +93,18 @@ namespace WebApi.Controllers;
         [HttpDelete("{id}")]
         public IActionResult DeleteBook(int id)
         {
-            var dbBook=_context.Books.SingleOrDefault(b=>b.Id==id);
-
-            if (dbBook is null)
-                return BadRequest();
+            DeleteBookCommand command=new DeleteBookCommand(_context);
+            command.BookId=id;
             
-            _context.Remove(dbBook);
-            _context.SaveChanges();
+            try
+            {    
+                command.Handle();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
             return Ok();
         }
     }

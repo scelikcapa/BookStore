@@ -21,7 +21,6 @@ public class UpdateBookCommand
             throw new InvalidOperationException("Kayıt bulunamadı. Lütfen ilk önce kaydı oluşturun");
         }
 
-        
         book.GenreId=Model.GenreId != default ? Model.GenreId : book.GenreId;
         book.PageCount=Model.PageCount != default ? Model.PageCount : book.PageCount;
         book.PublishDate=Model.PublishDate != default ? DateTime.ParseExact(Model.PublishDate, "yyyy-MM-dd", CultureInfo.InvariantCulture) : book.PublishDate;

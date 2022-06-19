@@ -2,18 +2,20 @@ using Microsoft.AspNetCore.Mvc;
 using WebApi.DbOperations;
 using Microsoft.EntityFrameworkCore;
 using WebApi.Common;
+using AutoMapper;
 
 namespace WebApi.BookOperations.GetBooks;
-
 
 public class GetByIdQuery
 {
     public int BookId { get; set; }
     private readonly BookStoreDbContext _context;
+    private readonly IMapper mapper;
 
-    public GetByIdQuery(BookStoreDbContext context)
+    public GetByIdQuery(BookStoreDbContext context,IMapper mapper)
     {
         _context = context;
+        this.mapper = mapper;
     }
 
     public GetByIdQueryModel Handle()
@@ -24,24 +26,18 @@ public class GetByIdQuery
         {
             throw new InvalidOperationException("Kayıt bulunamadı.");
         }
-        var vm= new GetByIdQueryModel
-        {
-            Id=BookId,
-            Title = book.Title,
-            Genre = ((GenreEnum)book.GenreId).ToString(),
-            PublishDate= book.PublishDate.Date.ToString("dd/MM/yyyy"),
-            PageCount = book.PageCount
-        };
     
+        var vm=mapper.Map<GetByIdQueryModel>(book);
+
         return vm;
     }
 }
 
-    public class GetByIdQueryModel
-    {
-        public int Id { get; set; }
-        public string Title { get; set; }
-        public int PageCount { get; set; }
-        public string PublishDate { get; set; }
-        public string Genre { get; set; }
-    }
+public class GetByIdQueryModel
+{
+    public int Id { get; set; }
+    public string Title { get; set; }
+    public int PageCount { get; set; }
+    public string PublishDate { get; set; }
+    public string Genre { get; set; }
+}
