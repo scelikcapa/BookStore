@@ -17,7 +17,7 @@ public class CreateBookCommand
 
     public void Handle()
     {
-        var book=_context.Books.SingleOrDefault(b=>b.Id==Model.Id);
+        var book=_context.Books.SingleOrDefault(b=>b.Title==Model.Title);
 
         if (book is not null)
         {
@@ -33,7 +33,6 @@ public class CreateBookCommand
 
 public class CreateBookModel
 {
-    public int Id { get; set; }
     public string Title { get; set; }
     public int GenreId { get; set; }
     public int PageCount { get; set; }

@@ -2,6 +2,7 @@ using System.Globalization;
 using WebApi;
 using WebApi.DbOperations;
 
+namespace WebApi.BookOperations.UpdateBook;
 public class UpdateBookCommand
 {
     public UpdateBookModel Model { get; set; }
