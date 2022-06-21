@@ -25,11 +25,10 @@ public class BooksController : ControllerBase
     [HttpGet]
     public IActionResult GetBooks() 
     {
-        // var bookList=_context.Books.OrderBy(b=>b.Id).ToList<Book>();
-        // return bookList;
-
         GetBooksQuery query =new GetBooksQuery(_context,_mapper);
+
         var result = query.Handle();
+
         return Ok(result);
     }
 
@@ -38,19 +37,12 @@ public class BooksController : ControllerBase
     {
         GetByIdQuery query=new GetByIdQuery(_context,_mapper);
         query.BookId=id;
-        GetByIdQueryModel result;
-        GetByIdQueryValidator validator =new GetByIdQueryValidator();
 
-        try
-        {
-            validator.ValidateAndThrow(query);
-            result=query.Handle();
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(ex.Message);
-        }
-        
+        GetByIdQueryValidator validator =new GetByIdQueryValidator();
+        validator.ValidateAndThrow(query);
+
+        var result=query.Handle();
+
         return Ok(result);
     }
     
@@ -59,28 +51,12 @@ public class BooksController : ControllerBase
     public IActionResult AddBook([FromBody] CreateBookModel newBook)
     {
         CreateBookCommand command=new CreateBookCommand(_context, _mapper);
+        command.Model=newBook;
         
-        try
-        {
-            command.Model=newBook;
-            CreateBookCommandValidator validator=new CreateBookCommandValidator();
-            validator.ValidateAndThrow(command);
-            command.Handle();
+        CreateBookCommandValidator validator=new CreateBookCommandValidator();
+        validator.ValidateAndThrow(command);
 
-            // var result = validator.Validate(command);
-            // if (!result.IsValid)
-            // {
-            //     foreach (var item in result.Errors)
-            //         Console.WriteLine("Property = "+item.PropertyName + " - Error Message = " + item.ErrorMessage);
-            // }
-            // else
-            //         command.Handle();
-
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(ex.Message);
-        }
+        command.Handle();
 
         return Ok();
     }
@@ -91,18 +67,12 @@ public class BooksController : ControllerBase
         UpdateBookCommand command=new UpdateBookCommand(_context);
         command.Model=updatedBook;
         command.BookId=id;
+
         UpdateBookCommandValidator validator = new UpdateBookCommandValidator();
+        validator.ValidateAndThrow(command);
 
-        try
-        {    
-            validator.ValidateAndThrow(command);
-            command.Handle();
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(ex.Message);
-        }
-
+        command.Handle();
+        
         return Ok();
     }
 
@@ -111,16 +81,11 @@ public class BooksController : ControllerBase
     {
         DeleteBookCommand command=new DeleteBookCommand(_context);
         command.BookId=id;
+
         DeleteBookCommandValidator validator = new DeleteBookCommandValidator();
-        try
-        {    
-            validator.ValidateAndThrow(command);
-            command.Handle();
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(ex.Message);
-        }
+        validator.ValidateAndThrow(command);
+
+        command.Handle();
 
         return Ok();
     }
