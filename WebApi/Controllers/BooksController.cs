@@ -90,7 +90,7 @@ public class BooksController : ControllerBase
     {
         UpdateBookCommand command=new UpdateBookCommand(_context);
         command.Model=updatedBook;
-        command.Model.Id=id;
+        command.BookId=id;
         UpdateBookCommandValidator validator = new UpdateBookCommandValidator();
 
         try

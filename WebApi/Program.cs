@@ -1,6 +1,8 @@
+using System;
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using WebApi.DbOperations;
+using WebApi.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,6 +36,63 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+#region Middleware
+/*
+app.Run()
+app.Run(async context => Console.WriteLine("Middleware 1."));
+app.Run(async context => Console.WriteLine("Middleware 2."));
+
+app.Use()
+app.Use(async (context, next) =>
+{
+    Console.WriteLine("Middleware 1 basladi");
+    await next.Invoke();
+    Console.WriteLine("Middleware 1 sonlandiriliyor");
+});
+
+app.Use(async (context, next) =>
+{
+    Console.WriteLine("Middleware 2 basladi");
+    await next.Invoke();
+    Console.WriteLine("Middleware 2 sonlandiriliyor");
+});
+
+// app.Use(async (context, next) =>
+// {
+//     Console.WriteLine("Middleware 3 basladi");
+//     await next.Invoke();
+//     Console.WriteLine("Middleware 3 sonlandiriliyor");
+// });
+
+app.UseHello();
+
+app.Use(async (context, next) =>
+{
+    Console.WriteLine("Use Middleware tetiklendi");
+    await next.Invoke();
+});
+
+// app.Map()
+app.Map("/example", internalApp => internalApp.Run(async context =>
+{
+    Console.WriteLine("/example middleware tetiklendi");
+    await context.Response.WriteAsync("/example middleware tetiklendi");
+}));
+
+// app.MapWhen()
+app.MapWhen(x => x.Request.Method == "GET", internalApp =>
+{
+    internalApp.Run(async context =>
+    {
+        System.Console.WriteLine("MapWhen Middleware tetiklendi.");
+        await context.Response.WriteAsync("MapWhen Middleware tetiklendi.");
+    });
+});
+*/
+#endregion
+
+app.UseCustomExceptionMiddle();
 
 app.MapControllers();
 
