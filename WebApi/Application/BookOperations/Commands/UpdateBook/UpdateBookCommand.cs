@@ -1,5 +1,5 @@
 using System.Globalization;
-using WebApi;
+using WebApi.Entities;
 using WebApi.DbOperations;
 
 namespace WebApi.BookOperations.UpdateBook;

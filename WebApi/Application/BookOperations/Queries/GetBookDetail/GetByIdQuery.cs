@@ -20,7 +20,7 @@ public class GetByIdQuery
 
     public GetByIdQueryModel Handle()
     {
-        var book=_context.Books.SingleOrDefault(b=>b.Id==BookId);
+        var book=_context.Books.Include(b=>b.Genre).SingleOrDefault(b=>b.Id==BookId);
 
         if (book is null)
         {
