@@ -8,6 +8,6 @@ public class CreateAuthorCommandValidator : AbstractValidator<CreateAuthorComman
     {
         RuleFor(c=>c.Model.Name).NotEmpty().MinimumLength(3);
         RuleFor(c=>c.Model.Surname).NotEmpty().MinimumLength(2);
-        RuleFor(c=>c.Model.BirthDate).GreaterThan(DateTime.Now.AddYears(-18));
+        RuleFor(c=>c.Model.BirthDate).LessThan(DateTime.Now.AddYears(-18));
     }
 }

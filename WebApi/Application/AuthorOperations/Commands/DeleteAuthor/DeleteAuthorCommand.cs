@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using WebApi.DbOperations;
 
 namespace WebApi.Application.AuthorOperations.Commands.DeleteAuthor;
@@ -14,7 +15,7 @@ public class DeleteAuthorCommand
 
     public void Handle()
     {
-        var author=context.Authors.SingleOrDefault(a=>a.Id==AuthorId);
+        var author=context.Authors.Include(a=>a.Books).SingleOrDefault(a=>a.Id==AuthorId);
 
         if(author is null)
             throw new InvalidOperationException("Silinecek Yazar bulunamadı.");

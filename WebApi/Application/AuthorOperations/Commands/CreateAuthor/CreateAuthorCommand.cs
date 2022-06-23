@@ -19,9 +19,9 @@ public class CreateAuthorCommand
 
     public void Handle()
     {
-        var author = context.Authors.SingleOrDefault(a=>a.Name == Model.Name && a.Surname==Model.Surname);
+        var author = context.Authors.SingleOrDefault(a=>a.Name.ToLower() == Model.Name.ToLower() && a.Surname.ToLower() == Model.Surname.ToLower());
 
-        if(author is null)
+        if(author is not null)
             throw new InvalidOperationException("Yazar zaten mevcut.");
         
         author = mapper.Map<Author>(Model);

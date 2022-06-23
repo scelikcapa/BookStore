@@ -24,10 +24,11 @@ public class UpdateAuthorCommand
         if(author is null)
             throw new InvalidOperationException("Güncellenecek Yazar bulunamadı.");
             
-        if(context.Authors.Any(a=>a.FullName==Model.FullName && a.Id != AuthorId))
+        if(context.Authors.Where(a=> a.Id!=AuthorId).Select(a=> new{FullName = (a.Name+" "+a.Surname).ToLower()}).Any(a=>a.FullName==Model.FullName))
             throw new InvalidOperationException("Aynı isimli bir Yazar zaten mevcuttur.");
         
-        author = mapper.Map<Author>(Model);
+
+        mapper.Map<UpdateAuthorModel,Author>(Model,author);
 
         context.SaveChanges();
     }
