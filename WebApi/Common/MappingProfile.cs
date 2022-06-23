@@ -1,4 +1,6 @@
 using AutoMapper;
+using WebApi.Application.AuthorOperations.Queries.GetAuthorDetail;
+using WebApi.Application.AuthorOperations.Queries.GetAuthors;
 using WebApi.Application.GenreOperations.Command.CreateGenre;
 using WebApi.Application.GenreOperations.Command.UpdateGenre;
 using WebApi.Application.GenreOperations.Query.GetGenreDetail;
@@ -18,5 +20,7 @@ public class MappingProfile : Profile
         CreateMap<Genre,GetGenresViewModel>();
         CreateMap<Genre,GetGenreDetailViewModel>();
         CreateMap<CreateGenreModel,Genre>();
+        CreateMap<Author,GetAuthorViewModel>();
+        CreateMap<Author,GetAuthorDetailViewModel>();
     }
 }

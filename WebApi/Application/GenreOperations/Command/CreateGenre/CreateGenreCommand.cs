@@ -19,10 +19,12 @@ public class CreateGenreCommand
     public void Handle()
     {
         var genre = context.Genres.SingleOrDefault(g=>g.Name==Model.Name);
+        
         if(genre is not null)
             throw new InvalidOperationException("Kitap Türü zaten mevcut.");
 
         genre = mapper.Map<Genre>(Model);
+
         context.Genres.Add(genre);
         context.SaveChanges();
     }
