@@ -20,10 +20,7 @@ public class DeleteGenreCommand
         if(genre is null)
             throw new InvalidOperationException("Kitap Türü bulunamadı.");
         
-        if(genre.IsActive==false)
-            throw new InvalidOperationException("Kitap Türü zaten silinmiş.");
-
-        genre.IsActive=false;
+        context.Genres.Remove(genre);
         context.SaveChanges();
     }
 
