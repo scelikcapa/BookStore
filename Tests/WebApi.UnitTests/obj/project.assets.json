@@ -6848,11 +6848,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\Admin\\source\\repos\\Pratikler\\bookstore\\Tests\\WebApi.UnitTests\\WebApi.UnitTests.csproj",
+      "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\Pratikler\\bookstore\\Tests\\WebApi.UnitTests\\WebApi.UnitTests.csproj",
       "projectName": "WebApi.UnitTests",
-      "projectPath": "c:\\Users\\Admin\\source\\repos\\Pratikler\\bookstore\\Tests\\WebApi.UnitTests\\WebApi.UnitTests.csproj",
+      "projectPath": "C:\\Users\\Admin\\source\\repos\\Pratikler\\bookstore\\Tests\\WebApi.UnitTests\\WebApi.UnitTests.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\Admin\\source\\repos\\Pratikler\\bookstore\\Tests\\WebApi.UnitTests\\obj\\",
+      "outputPath": "C:\\Users\\Admin\\source\\repos\\Pratikler\\bookstore\\Tests\\WebApi.UnitTests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -6869,8 +6869,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "c:\\Users\\Admin\\source\\repos\\Pratikler\\bookstore\\webapi\\WebApi.csproj": {
-              "projectPath": "c:\\Users\\Admin\\source\\repos\\Pratikler\\bookstore\\webapi\\WebApi.csproj"
+            "C:\\Users\\Admin\\source\\repos\\Pratikler\\bookstore\\webapi\\WebApi.csproj": {
+              "projectPath": "C:\\Users\\Admin\\source\\repos\\Pratikler\\bookstore\\webapi\\WebApi.csproj"
             }
           }
         }
