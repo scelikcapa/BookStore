@@ -21,7 +21,7 @@ public class CreateBookCommand
 
         if (book is not null)
         {
-            throw new InvalidOperationException("Kitap zaten mevcut.");
+            throw new InvalidOperationException("Kitap zaten mevcuttur.");
         }
 
         book=mapper.Map<Book>(Model);

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jPCumlkrKKraT1agMd66tmdMncFmhY9KwHZDginhFyyjIL37Z+LXBgirx2244pviC5ncHNwcDGZfG6LJ+U5M6Q==",
+  "dgSpecHash": "NY7UEjeedhGmDmVpVVy8sVJ3fj8hxh/Eott61QqYSkcqMG68kWOko6FSe+j5rXRel6P59fEVnSWLBWCRinygGA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Admin\\source\\repos\\Pratikler\\bookstore\\Tests\\WebApi.UnitTests\\WebApi.UnitTests.csproj",
+  "projectFilePath": "c:\\Users\\Admin\\source\\repos\\Pratikler\\bookstore\\Tests\\WebApi.UnitTests\\WebApi.UnitTests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
