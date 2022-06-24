@@ -4,10 +4,10 @@ using WebApi.DbOperations;
 namespace WebApi.Application.GenreOperations.Query.GetGenres;
 public class GetGenresQuery
 {
-    private readonly BookStoreDbContext context;
+    private readonly IBookStoreDbContext context;
     private readonly IMapper mapper;
 
-    public GetGenresQuery(BookStoreDbContext context, IMapper mapper)
+    public GetGenresQuery(IBookStoreDbContext context, IMapper mapper)
     {
         this.context = context;
         this.mapper = mapper;

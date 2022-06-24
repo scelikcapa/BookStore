@@ -4,10 +4,10 @@ namespace WebApi.Application.GenreOperations.Command.DeleteGenre;
 
 public class DeleteGenreCommand
 {
-    private readonly BookStoreDbContext context;
+    private readonly IBookStoreDbContext context;
     public int GenreId { get; set; }
 
-    public DeleteGenreCommand(BookStoreDbContext context)
+    public DeleteGenreCommand(IBookStoreDbContext context)
     {
         this.context = context;
     }

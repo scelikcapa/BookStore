@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\Admin\\source\\repos\\Pratikler\\bookstore\\webapi\\WebApi.csproj": {}
+    "C:\\Users\\Admin\\source\\repos\\Pratikler\\bookstore\\webapi\\WebApi.csproj": {}
   },
   "projects": {
-    "c:\\Users\\Admin\\source\\repos\\Pratikler\\bookstore\\webapi\\WebApi.csproj": {
+    "C:\\Users\\Admin\\source\\repos\\Pratikler\\bookstore\\webapi\\WebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Admin\\source\\repos\\Pratikler\\bookstore\\webapi\\WebApi.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\Pratikler\\bookstore\\webapi\\WebApi.csproj",
         "projectName": "WebApi",
-        "projectPath": "c:\\Users\\Admin\\source\\repos\\Pratikler\\bookstore\\webapi\\WebApi.csproj",
+        "projectPath": "C:\\Users\\Admin\\source\\repos\\Pratikler\\bookstore\\webapi\\WebApi.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Admin\\source\\repos\\Pratikler\\bookstore\\webapi\\obj\\",
+        "outputPath": "C:\\Users\\Admin\\source\\repos\\Pratikler\\bookstore\\webapi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
