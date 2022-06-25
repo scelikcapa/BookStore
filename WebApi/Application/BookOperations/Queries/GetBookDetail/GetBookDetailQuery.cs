@@ -4,21 +4,21 @@ using Microsoft.EntityFrameworkCore;
 using WebApi.Common;
 using AutoMapper;
 
-namespace WebApi.BookOperations.GetBooks;
+namespace WebApi.Application.BookOperations.Queries.GetBookDetail;
 
-public class GetByIdQuery
+public class GetBookDetailQuery
 {
     public int BookId { get; set; }
     private readonly IBookStoreDbContext _context;
     private readonly IMapper mapper;
 
-    public GetByIdQuery(IBookStoreDbContext context,IMapper mapper)
+    public GetBookDetailQuery(IBookStoreDbContext context,IMapper mapper)
     {
         _context = context;
         this.mapper = mapper;
     }
 
-    public GetByIdQueryModel Handle()
+    public GetBookDetailViewModel Handle()
     {
         var book=_context.Books.Include(b=>b.Genre).SingleOrDefault(b=>b.Id==BookId);
 
@@ -27,13 +27,13 @@ public class GetByIdQuery
             throw new InvalidOperationException("Kayıt bulunamadı.");
         }
     
-        var vm=mapper.Map<GetByIdQueryModel>(book);
+        var vm=mapper.Map<GetBookDetailViewModel>(book);
 
         return vm;
     }
 }
 
-public class GetByIdQueryModel
+public class GetBookDetailViewModel
 {
     public int Id { get; set; }
     public string Title { get; set; }

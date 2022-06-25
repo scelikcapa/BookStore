@@ -1,17 +1,20 @@
 using System.Globalization;
 using WebApi.Entities;
 using WebApi.DbOperations;
+using AutoMapper;
 
-namespace WebApi.BookOperations.UpdateBook;
+namespace WebApi.Application.BookOperations.Commands.UpdateBook;
 public class UpdateBookCommand
 {
     public int BookId { get; set; }
     public UpdateBookModel Model { get; set; }
     private readonly IBookStoreDbContext _context;
+    private readonly IMapper mapper;
 
-    public UpdateBookCommand(IBookStoreDbContext context)
+    public UpdateBookCommand(IBookStoreDbContext context, IMapper mapper)
     {
         _context = context;
+        this.mapper = mapper;
     }
 
     public void Handle()

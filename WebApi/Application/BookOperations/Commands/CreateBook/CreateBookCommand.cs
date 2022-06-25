@@ -2,7 +2,7 @@ using AutoMapper;
 using WebApi.Entities;
 using WebApi.DbOperations;
 
-namespace WebApi.BookOperations.CreateBook;
+namespace WebApi.Application.BookOperations.Commands.CreateBook;
 public class CreateBookCommand
 {
     public CreateBookModel Model { get; set; }

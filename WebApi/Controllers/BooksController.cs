@@ -1,11 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using WebApi.DbOperations;
-using WebApi.BookOperations.GetBooks;
-using WebApi.BookOperations.CreateBook;
-using WebApi.BookOperations.DeleteBook;
 using AutoMapper;
 using FluentValidation;
-using WebApi.BookOperations.UpdateBook;
+using WebApi.Application.BookOperations.Queries.GetBookDetail;
+using WebApi.Application.BookOperations.Queries.GetBooks;
+using WebApi.Application.BookOperations.Commands.CreateBook;
+using WebApi.Application.BookOperations.Commands.UpdateBook;
+using WebApi.Application.BookOperations.Commands.DeleteBook;
 
 namespace WebApi.Controllers;
 
@@ -35,10 +36,10 @@ public class BooksController : ControllerBase
     [HttpGet("{id}")]
     public IActionResult GetById (int id)
     {
-        GetByIdQuery query=new GetByIdQuery(_context,_mapper);
+        GetBookDetailQuery query=new GetBookDetailQuery(_context,_mapper);
         query.BookId=id;
 
-        GetByIdQueryValidator validator =new GetByIdQueryValidator();
+        GetBookDetailQueryValidator validator =new GetBookDetailQueryValidator();
         validator.ValidateAndThrow(query);
 
         var result=query.Handle();
@@ -64,7 +65,7 @@ public class BooksController : ControllerBase
     [HttpPut("{id}")]
     public IActionResult UpdateBook(int id, [FromBody] UpdateBookModel updatedBook)
     {
-        UpdateBookCommand command=new UpdateBookCommand(_context);
+        UpdateBookCommand command=new UpdateBookCommand(_context, _mapper);
         command.Model=updatedBook;
         command.BookId=id;
 

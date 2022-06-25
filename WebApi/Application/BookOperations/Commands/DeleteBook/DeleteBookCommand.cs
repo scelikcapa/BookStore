@@ -1,7 +1,7 @@
 using WebApi;
 using WebApi.DbOperations;
 
-namespace WebApi.BookOperations.DeleteBook;
+namespace WebApi.Application.BookOperations.Commands.DeleteBook;
 public class DeleteBookCommand
 {
     private readonly IBookStoreDbContext _context;
