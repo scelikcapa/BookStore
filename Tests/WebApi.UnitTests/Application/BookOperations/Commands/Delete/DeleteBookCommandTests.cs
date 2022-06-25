@@ -39,15 +39,14 @@ public class DeleteBookCommandTests : IClassFixture<CommonTestFixture>
         context.Books.Add(bookInDb);
         context.SaveChanges();
 
-        var bookId = context.Books.Single(b=>b.Title == bookInDb.Title).Id;
         var command = new DeleteBookCommand(context);
-        command.BookId = bookId;
+        command.BookId = bookInDb.Id;
 
         // Act
         FluentActions.Invoking(() => command.Handle()).Invoke();
 
         // Assert
-        var book = context.Books.SingleOrDefault(b=> b.Id == bookId);
+        var book = context.Books.SingleOrDefault(b=> b.Id == bookInDb.Id);
         book.Should().BeNull();
     }
 }
