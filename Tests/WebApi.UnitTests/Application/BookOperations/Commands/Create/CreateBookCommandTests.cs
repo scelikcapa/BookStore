@@ -1,11 +1,11 @@
 using AutoMapper;
 using FluentAssertions;
-using WebApi.BookOperations.CreateBook;
+using WebApi.Application.BookOperations.Commands.CreateBook;
 using WebApi.DbOperations;
 using WebApi.Entities;
 using WebApi.UnitTests.TestSetup;
 
-namespace WebApi.UnitTests.Application.BookOperations.Commands.CreateCommand;
+namespace WebApi.UnitTests.Application.BookOperations.Commands.Create;
 
 public class CreateBookCommandTests : IClassFixture<CommonTestFixture>
 {   
