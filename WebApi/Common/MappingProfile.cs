@@ -6,10 +6,10 @@ using WebApi.Application.AuthorOperations.Queries.GetAuthors;
 using WebApi.Application.BookOperations.Commands.CreateBook;
 using WebApi.Application.BookOperations.Queries.GetBookDetail;
 using WebApi.Application.BookOperations.Queries.GetBooks;
-using WebApi.Application.GenreOperations.Command.CreateGenre;
-using WebApi.Application.GenreOperations.Command.UpdateGenre;
-using WebApi.Application.GenreOperations.Query.GetGenreDetail;
-using WebApi.Application.GenreOperations.Query.GetGenres;
+using WebApi.Application.GenreOperations.Commands.CreateGenre;
+using WebApi.Application.GenreOperations.Commands.UpdateGenre;
+using WebApi.Application.GenreOperations.Queries.GetGenreDetail;
+using WebApi.Application.GenreOperations.Queries.GetGenres;
 using WebApi.Entities;
 
 namespace WebApi.Common;

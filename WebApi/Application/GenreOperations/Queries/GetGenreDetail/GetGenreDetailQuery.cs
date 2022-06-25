@@ -1,7 +1,7 @@
 using AutoMapper;
 using WebApi.DbOperations;
 
-namespace WebApi.Application.GenreOperations.Query.GetGenreDetail;
+namespace WebApi.Application.GenreOperations.Queries.GetGenreDetail;
 public class GetGenreDetailQuery
 {
     private readonly IBookStoreDbContext context;

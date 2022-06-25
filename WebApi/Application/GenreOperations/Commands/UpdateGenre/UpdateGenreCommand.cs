@@ -2,7 +2,7 @@ using AutoMapper;
 using WebApi.DbOperations;
 using WebApi.Entities;
 
-namespace WebApi.Application.GenreOperations.Command.UpdateGenre;
+namespace WebApi.Application.GenreOperations.Commands.UpdateGenre;
 
 public class UpdateGenreCommand 
 {

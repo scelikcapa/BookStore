@@ -2,7 +2,7 @@ using AutoMapper;
 using WebApi.DbOperations;
 using WebApi.Entities;
 
-namespace WebApi.Application.GenreOperations.Command.CreateGenre;
+namespace WebApi.Application.GenreOperations.Commands.CreateGenre;
 
 public class CreateGenreCommand
 {
