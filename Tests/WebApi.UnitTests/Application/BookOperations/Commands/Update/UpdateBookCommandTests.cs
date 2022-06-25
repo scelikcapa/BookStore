@@ -44,16 +44,15 @@ public class UpdateBookCommandTests : IClassFixture<CommonTestFixture>
         context.Books.Add(bookInDb);
         context.SaveChanges();
 
-        var bookId = context.Books.Single(b=>b.Title == bookInDb.Title).Id;
         var command = new UpdateBookCommand(context,mapper);
-        command.BookId = bookId;
-        command.Model = new UpdateBookModel{ Title = "NewTitle", PageCount = 1, PublishDate = (new DateTime(1991,2,2)).ToString("yyyy-MM-dd"), GenreId = 2};
+        command.BookId = bookInDb.Id;
+        command.Model = new UpdateBookModel{ Title = "UpdatedTitle", PageCount = 1, PublishDate = (new DateTime(1991,2,2)).ToString("yyyy-MM-dd"), GenreId = 2};
 
         // Act
         FluentActions.Invoking(() => command.Handle()).Invoke();
 
         // Assert
-        var bookUpdated = context.Books.SingleOrDefault(b=> b.Id == bookId);
+        var bookUpdated = context.Books.SingleOrDefault(b=> b.Id == bookInDb.Id);
         bookUpdated.Should().NotBeNull();
         bookUpdated.PageCount.Should().NotBe(bookCompared.PageCount);
         bookUpdated.PublishDate.Should().NotBe(bookCompared.PublishDate);

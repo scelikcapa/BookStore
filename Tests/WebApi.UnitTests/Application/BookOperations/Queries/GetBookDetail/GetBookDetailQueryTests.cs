@@ -1,6 +1,5 @@
 using AutoMapper;
 using FluentAssertions;
-using WebApi.Application.BookOperations.Commands.CreateBook;
 using WebApi.Application.BookOperations.Queries.GetBookDetail;
 using WebApi.DbOperations;
 using WebApi.Entities;
@@ -40,7 +39,7 @@ public class GetBookDetailQueryTests : IClassFixture<CommonTestFixture>
     }
 
     [Fact]
-    public void WhenGivenBookIdDoesExistInDb_Book_ShouldBeRetuned()
+    public void WhenGivenBookIdDoesExistInDb_Book_ShouldBeReturned()
     {
         // Arrange
         var book = new Book{ Title = "WhenGivenBookIdDoesExistInDb_Book_ShouldBeRetuned", PageCount = 100, PublishDate = new DateTime(1990,02,02), GenreId = 1};
