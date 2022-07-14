@@ -7,9 +7,11 @@ using WebApi.Application.BookOperations.Queries.GetBooks;
 using WebApi.Application.BookOperations.Commands.CreateBook;
 using WebApi.Application.BookOperations.Commands.UpdateBook;
 using WebApi.Application.BookOperations.Commands.DeleteBook;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApi.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("[Controller]")]
 public class BooksController : ControllerBase
@@ -47,7 +49,6 @@ public class BooksController : ControllerBase
         return Ok(result);
     }
     
-
     [HttpPost]
     public IActionResult AddBook([FromBody] CreateBookModel newBook)
     {
@@ -60,6 +61,7 @@ public class BooksController : ControllerBase
         command.Handle();
 
         return Ok();
+        
     }
 
     [HttpPut("{id}")]

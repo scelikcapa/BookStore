@@ -12,10 +12,10 @@ public class CreateGenreCommandTests : IClassFixture<CommonTestFixture>
     private readonly BookStoreDbContext context;
     private readonly IMapper mapper;
 
-    public CreateGenreCommandTests(CommonTestFixture textfixture)
+    public CreateGenreCommandTests(CommonTestFixture testFixture)
     {
-        mapper = textfixture.Mapper;
-        context = textfixture.Context;
+        mapper = testFixture.Mapper;
+        context = testFixture.Context;
     }
 
     [Fact]

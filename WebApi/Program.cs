@@ -1,11 +1,33 @@
 using System;
 using System.Reflection;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using WebApi.DbOperations;
 using WebApi.Middlewares;
 using WebApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// OUR CODE for Authentication and Authorization
+ConfigurationManager configuration = builder.Configuration;
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer( opt =>
+{
+    opt.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateAudience = true,
+        ValidateIssuer = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = configuration["Token:Issuer"],
+        ValidAudience = configuration["Token:Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Token:SecurityKey"])),
+        ClockSkew = TimeSpan.Zero
+    };
+});
+
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -14,15 +36,18 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// OUR CODE
+// OUR CODE for EntityFramework
 builder.Services.AddDbContext<BookStoreDbContext>(options => options.UseInMemoryDatabase("BookStoreDb"));
+// OUR CODE for Dependency Injection
 builder.Services.AddScoped<IBookStoreDbContext>(provider=>provider.GetService<BookStoreDbContext>());
+// OUR CODE for AutoMapper
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+// OUR CODE for Logging
 builder.Services.AddSingleton<ILoggerService,DbLogger>();
 
 var app = builder.Build();
 
-// OUR CODE
+// OUR CODE for InMemory DataGeneration
 using (var scope=app.Services.CreateScope())
 {
     var services=scope.ServiceProvider;
@@ -36,10 +61,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+//OUR CODE for Authentication
+app.UseAuthentication();
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+// OUR CODE for Middleware
 #region Middleware
 /*
 app.Run()
@@ -95,6 +124,7 @@ app.MapWhen(x => x.Request.Method == "GET", internalApp =>
 */
 #endregion
 
+// OUR CODE for custom middleware
 app.UseCustomExceptionMiddle();
 
 app.MapControllers();

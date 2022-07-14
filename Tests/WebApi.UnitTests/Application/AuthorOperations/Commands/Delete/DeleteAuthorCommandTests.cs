@@ -12,10 +12,10 @@ public class DeleteAuthorCommandTests : IClassFixture<CommonTestFixture>
     private readonly BookStoreDbContext context;
     private readonly IMapper mapper;
 
-    public DeleteAuthorCommandTests(CommonTestFixture textfixture)
+    public DeleteAuthorCommandTests(CommonTestFixture testFixture)
     {
-        mapper = textfixture.Mapper;
-        context = textfixture.Context;
+        mapper = testFixture.Mapper;
+        context = testFixture.Context;
     }
 
     [Fact]

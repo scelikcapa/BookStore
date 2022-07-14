@@ -13,10 +13,10 @@ public class GetAuthorDetailQueryTests : IClassFixture<CommonTestFixture>
     private readonly BookStoreDbContext context;
     private readonly IMapper mapper;
 
-    public GetAuthorDetailQueryTests(CommonTestFixture textfixture)
+    public GetAuthorDetailQueryTests(CommonTestFixture testFixture)
     {
-        mapper = textfixture.Mapper;
-        context = textfixture.Context;
+        mapper = testFixture.Mapper;
+        context = testFixture.Context;
     }
 
     [Fact]

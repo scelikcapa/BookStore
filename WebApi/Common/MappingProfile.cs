@@ -10,6 +10,8 @@ using WebApi.Application.GenreOperations.Commands.CreateGenre;
 using WebApi.Application.GenreOperations.Commands.UpdateGenre;
 using WebApi.Application.GenreOperations.Queries.GetGenreDetail;
 using WebApi.Application.GenreOperations.Queries.GetGenres;
+using WebApi.Application.TokenOperations.Commands.CreateToken;
+using WebApi.Application.UserOperations.Commands.CreateUser;
 using WebApi.Entities;
 
 namespace WebApi.Common;
@@ -35,5 +37,9 @@ public class MappingProfile : Profile
             .ForMember(dest=>dest.Id,opt=>opt.Ignore())
             .ForMember(dest=>dest.Name, opt=>opt.Condition(src=>!String.IsNullOrEmpty(src.Name.Trim())))
             .ForMember(dest=>dest.Surname, opt=>opt.Condition(src=>!String.IsNullOrEmpty(src.Surname.Trim())));
+
+        CreateMap<CreateUserModel,User>();
+        CreateMap<CreateTokenModel,User>();
+        
     }
 }

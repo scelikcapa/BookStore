@@ -12,10 +12,10 @@ public class UpdateAuthorCommandTests : IClassFixture<CommonTestFixture>
     private readonly BookStoreDbContext context;
     private readonly IMapper mapper;
 
-    public UpdateAuthorCommandTests(CommonTestFixture textfixture)
+    public UpdateAuthorCommandTests(CommonTestFixture testFixture)
     {
-        mapper = textfixture.Mapper;
-        context = textfixture.Context;
+        mapper = testFixture.Mapper;
+        context = testFixture.Context;
     }
 
     [Fact]

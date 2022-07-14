@@ -12,10 +12,10 @@ public class GetGenreDetailQueryTests : IClassFixture<CommonTestFixture>
     private readonly BookStoreDbContext context;
     private readonly IMapper mapper;
 
-    public GetGenreDetailQueryTests(CommonTestFixture textfixture)
+    public GetGenreDetailQueryTests(CommonTestFixture testFixture)
     {
-        mapper = textfixture.Mapper;
-        context = textfixture.Context;
+        mapper = testFixture.Mapper;
+        context = testFixture.Context;
     }
 
     [Fact]
